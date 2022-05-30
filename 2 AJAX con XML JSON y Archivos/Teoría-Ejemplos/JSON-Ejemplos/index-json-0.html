@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AJAX</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=FqEOIH6P2fI28hZAkVqg2n5HMxuPLP1vK69ctK52SC2fprqg6woUiIUWemEOHgMsdqKZzUyNy_rKyrw8S1MLMn8aDaeXOtNd751ePTRM5sZKEiZfG-9M-jchNbH3y0InLSAVoimki7t7gltfksJY6P9zR8kgpC2aCLtAYcrobJyC8szCgAvM5oGJM7nu3UeENcWvLw7_PPW6TqovVFYXBpFn4ILPKOtGBjg3zrpbSlaNPzA0mduJl8j6h0INozoq" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9hdWxhdmlydHVhbDM1LmVkdWNhLm1hZHJpZC5vcmcvaWVzLnRldHVhbi5tYWRyaWQvcGx1Z2luZmlsZS5waHAvNDQ3NzEvbW9kX2ZvbGRlci9jb250ZW50LzAvRUpFTVBMT1MtVEVPUiVDMyU4REEvRWplbXBsby1KU09OL2luZGV4LWpzb24tMC5odG1sP2ZvcmNlZG93bmxvYWQ9MQ"/><style>
+</style>
+<script>
+ var xhr;
+ var alumno;
+ var materia;
+ var calificacion;
+ var objetoPeticion = new Object();
+ var objetoRespuesta;
+ 
+ function enviarPeticionAJAX(evento) {
+	if (alumno.value !='' && materia.value !=''){
+		objetoPeticion.alumno = alumno.value;
+		objetoPeticion.materia = materia.value;
+		alumno.disabled = true;
+		materia.disabled = true;
+		xhr = new XMLHttpRequest();
+		xhr.addEventListener('readystatechange', gestionarRespuesta, false);
+		xhr.open('POST', 'ajax.php', true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.send(JSON.stringify(objetoPeticion));
+	}else{
+		calificacion.value = '';
+             }			
+}
+
+function gestionarRespuesta(evento) {
+	if (evento.target.readyState == 4 && evento.target.status == 200) {
+		alumno.disabled = false;
+		materia.disabled = false;
+		objetoRespuesta = JSON.parse(evento.target.responseText);
+		calificacion.value = objetoRespuesta.calificacion;
+	}
+}
+
+
+function inicializar() {
+	if (document.readyState == 'complete') {
+		alumno = document.getElementById('alumno');
+		materia = document.getElementById('materia');
+		calificacion = document.getElementById('calificacion');
+		alumno.addEventListener('change', enviarPeticionAJAX, false);
+		materia.addEventListener('change', enviarPeticionAJAX, false);
+	}
+}
+
+document.addEventListener('readystatechange', inicializar, false);
+
+</script>
+</head>
+<body>
+<form id='formulario'>
+	<label for='alumno'>Alumno: </label>
+	<select id='alumno' name='alumno'>
+		<option value='' selected='selected'>--Elija un alumno--</option>
+		<option>Isaac Newton</option>
+		<option>Marie Courie</option>
+	</select>
+	<label for='materia'>Materia: </label>
+	<select id='materia' name='materia'>
+		<option value='' selected='selected'>--Elija una materia--</option>
+		<option>Lenguaje</option>
+		<option>Matem&aacute;ticas</option>
+	</select>
+	<label for='calificacion'>Calificaci&oacute;n: </label>
+	<input type='text' readonly='readonly' id='calificacion'/>
+</form>
+</body>
+</html>

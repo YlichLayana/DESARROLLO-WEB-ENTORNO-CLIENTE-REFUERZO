@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  
+    <div id="datos"></div>
+
+    <script>
+       
+       //Todo: Variables de Conexion AJAX 
+        var ObjetoRespJSON;
+        var urlArchivoJSON
+
+        // OTRO: declaracion de las variables a usar
+        var resultado;
+        var nodoTexto;
+        var h2;
+
+        // variable tiempo de espera para cargar datos del JSON usando Setimout
+        var timer;
+
+
+        document.addEventListener("DOMContentLoaded", inicializarDOM, false);
+
+        function inicializarDOM() {
+            resultado = document.getElementById("datos");
+            nodoTexto = document.getElementById("datos");
+
+            // creación del elemeto h2 y asignacion de contenido en el 
+            h2 = document.createElement("h2");
+            h2.style.color='#550F0F';
+
+            //* le aplico los estilos necesarios al nodo padre
+            nodoTexto.style.textAlign = "center";
+            nodoTexto.style.paddingTop = "200px";
+
+            //!aqui le agrego el nodo hijo el cual es el h2
+            nodoTexto.appendChild(h2);
+
+            let mensaje = "Cargando Políticas de AWS...";
+            let pausa = 300;
+            let i = 0; //* este sera mi iterador o contador de indice
+            //otro: en este array separo los caracteres de la cadena de texto usando el metodo split 
+            let arrayMensaje = mensaje.split("");
+
+
+            //! Aqui uso el metodo setInterval para que esta se repita con un tiempo de retraso entre cada ejecucion. Este llama a una función a intervalos específicos en milisegundos.
+            var t = setInterval(function () {
+                if (i >= arrayMensaje.length - 1) {
+                clearInterval(t);
+                
+                timer = setTimeout(enviaPeticionAJAX, 2000);
+
+                }
+
+                h2.innerHTML += arrayMensaje[i];
+                i++;
+            }, pausa);
+        }
+
+        function enviaPeticionAJAX() {
+            console.log("estoy dentro de la funcion que realiza peticion ajax");
+
+            while (nodoTexto.firstElementChild) {
+                nodoTexto.removeChild(nodoTexto.firstElementChild);
+            }
+
+            urlArchivoJSON = "politicas-grupo-aws.json";
+
+            conexionJSON = new XMLHttpRequest();
+            conexionJSON.addEventListener("readystatechange", enviarRespuestaAJAX, false);
+            conexionJSON.open('GET', urlArchivoJSON);
+            conexionJSON.send();
+        }
+
+        function enviarRespuestaAJAX(evento) {
+        //console.log("tipo de estado: " + evento.target.readyState);
+
+            //Cuando readyState es 4 y el estado es 200, la respuesta está lista:
+            if (evento.target.readyState == 4 && evento.target.status == 200) {
+                //console.log("status del documento: " + evento.target.status);
+                ObjetoRespJSON = JSON.parse(evento.target.responseText);
+                console.log(ObjetoRespJSON);
+                mostrarDatosPoliticaAWS(ObjetoRespJSON);
+            
+            }
+        }
+
+        //funcion para crear las tarjetas de información del héroe
+        function mostrarDatosPoliticaAWS(objetoJson) {
+            var h1Titulo = document.createElement("h1");
+            h1Titulo.textContent = "Version: "+ objetoJson["Version"];
+            resultado.appendChild(h1Titulo);
+
+            var elementosPoliticas = objetoJson["Statement"];
+        
+            console.log(elementosPoliticas.length)
+
+            for (var i = 0; i < elementosPoliticas.length; i++) {
+                var article = document.createElement("article");
+                var encabezado = document.createElement("h2");
+                var parrafo1 = document.createElement("p");
+                var parrafo2 = document.createElement("p");
+                var list_Politicas_Action = document.createElement("ul");
+
+                //establezco el <h3> para que contenga el nombre del héroe actual
+                encabezado.textContent = "Elemento Statement "+ (i+1);
+
+                //creo los párrafos "Effect" y "Action" con su contenido
+                parrafo1.textContent = "Effect: " + elementosPoliticas[i].Effect;
+                parrafo2.textContent = "Action: ";
+                
+
+                var actionStatemenPolitica = elementosPoliticas[i].Action;
+
+                
+                if(Array.isArray(actionStatemenPolitica)){
+                    for (const iterator of actionStatemenPolitica) {
+                    console.log(iterator);
+                    var listItem = document.createElement("li");
+                    listItem.textContent = iterator;
+                    list_Politicas_Action.appendChild(listItem);
+                    }
+                }
+                else{
+                    console.log("no es: "+ actionStatemenPolitica);
+                    var listItem = document.createElement("li");
+                    listItem.textContent = actionStatemenPolitica;
+                    list_Politicas_Action.appendChild(listItem);
+                }
+                
+                article.appendChild(encabezado);
+                article.appendChild(parrafo1);
+                article.appendChild(parrafo2);
+                article.appendChild(list_Politicas_Action);
+
+                resultado.appendChild(article);
+            }
+        }
+    </script>
+</body>
+</html>

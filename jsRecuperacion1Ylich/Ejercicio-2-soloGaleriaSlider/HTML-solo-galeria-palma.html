@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galería fotos del volcán de la Palma</title>
+  </head>
+  <body>
+    <h1>GALERÍA DE FOTOS COMO UN TRIBUTO A LA PALMA</h1>
+    <br /><br />
+    <img src="inicial.jpg" alt="" width="888" height="500" /><br /><br />
+    <input
+      type="button"
+      style="width: 440px"
+      value="Izquierda"
+      onclick="mostrar(this.value)"
+    />
+    <input
+      type="button"
+      style="width: 440px"
+      value="Derecha"
+      onclick="mostrar(this.value)"
+    /><br /><br />
+
+    <script>
+      //variable contador global
+      var conta = 0;
+
+      //funcion para imagenes izquierda
+      function accionIzq() { 
+        var resu;
+        if (conta > 0) {
+          conta--;
+          resu=conta;
+        }
+        else{
+          resu="inicial";
+        }
+        return resu;
+      }
+
+      //funcion para imagenes derecha
+      function accionDer() { 
+        conta++;
+        return conta;
+      }
+
+      //probando
+      function ImageExist(imagenUrl) {
+        var img = new Image();
+        img.src = imagenUrl;
+        return img.height != 0;
+      }
+
+      
+      function mostrar(boton) {
+       var texto = ""
+       var valor = "";
+       
+       
+        switch (boton){
+                case "Derecha":
+                    
+                    
+                    valor=accionDer();
+                    //console.log(valor)
+                    texto+="imagen-"+valor+".jpg"
+                    console.log(texto) 
+                    
+              
+                    probando=ImageExist(texto);
+                    console.log(probando)
+                    
+                    if(probando){
+                      document.getElementsByTagName('img')[0].src=texto;
+                    }
+                    else{
+                      texto="inicial.jpg";
+                      document.getElementsByTagName('img')[0].src=texto;
+                    }
+                    
+                    break;
+                    
+                case "Izquierda":
+                   
+                    valor=accionIzq();
+                    //console.log(valor)
+                    if(valor=="inicial"){
+                      texto+=valor+".jpg";
+                      console.log(texto)
+                      document.getElementsByTagName('img')[0].src=texto;
+                    }else{
+                      texto+="imagen-"+valor+".jpg"
+                      console.log(texto)
+                      document.getElementsByTagName('img')[0].src=texto;
+                    }
+                    
+                    break;
+        }
+      }
+    </script>
+  </body>
+</html>

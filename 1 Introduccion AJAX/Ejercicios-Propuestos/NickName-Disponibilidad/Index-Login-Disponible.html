@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      var caja;
+      var enlace;
+
+      document.addEventListener("readystatechange", inicializar, false);
+
+      function inicializar() {
+        if (document.readyState == "complete") {
+          caja = document.getElementById("caja");
+          enlace = document.getElementById("enlace");
+
+          enlace.addEventListener("click", enviarPeticionAJAX, false);
+        }
+      }
+
+      function enviarPeticionAJAX(evento) {
+        if (caja.value != "") {
+          xhr = new XMLHttpRequest();
+          xhr.addEventListener("readystatechange", gestionarRespuesta, false);
+          xhr.open("GET", "ajax.php?Nombre=" + caja.value, true);
+          xhr.send(null);
+        }
+      }
+
+      function gestionarRespuesta(evento) {
+        if (evento.target.readyState == 4 && evento.target.status == 200) {
+          caja.value = evento.target.responseText;
+        }
+      }
+	  
+    </script>
+  </head>
+  <body>
+    <form>
+      <table>
+        <tr>
+          <td>Nombre de usuario:</td>
+          <td><input type="text" name="Nombre" id="caja" /></td>
+          <td><a href="#" id="enlace">Comprobar disponibilidad</a></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

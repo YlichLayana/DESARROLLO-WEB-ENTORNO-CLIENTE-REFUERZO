@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe matrícula Potter</title>
+</head>
+<body>
+    <center>
+    <h2>INFORME FINAL MATRÍCULA</h2>
+    <img src="" alt=""><br><br>
+    <label for="">Nombre: </label><input type="text"><br><br>
+    <label for="">Apellidos: </label><input type="text">
+    </center>
+
+
+    <script>
+
+        // Obtener la información almacenada desde sessionStorage
+        var nombre = sessionStorage.getItem('nombre');
+        var apellido = sessionStorage.getItem('apellido');
+
+        document.addEventListener("DOMContentLoaded", ejecutar());
+
+        function ejecutar() {
+            console.log(nombre);
+            console.log(apellido);
+
+            document.getElementsByTagName('img')[0].src=apellido+".jpg";
+            document.getElementsByTagName("input")[0].value = nombre;
+            document.getElementsByTagName("input")[1].value = apellido;       
+        }
+        
+    </script>
+</body>
+</html>

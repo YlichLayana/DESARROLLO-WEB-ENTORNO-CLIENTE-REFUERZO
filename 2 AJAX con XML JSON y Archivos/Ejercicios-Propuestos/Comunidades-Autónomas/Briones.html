@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form id='formulario'>
+        <label for='comunidad'>Comunidad autónoma: </label>
+        <select id='comunidad' name='comunidad'>
+        <option value='' selected='selected'>--Elija una comunidad--</option>
+        <option>andalucia</option>
+        <option>aragon</option>
+        <option>asturias</option>
+        <option>baleares</option>
+        <option>canarias</option>
+        <option>cantabria</option>
+        <option>castilla la mancha</option>
+        <option>castilla y leon</option>
+        <option>cataluña</option>
+        <option>comunidad Valenciana</option>
+        <option>extremadura</option>
+        <option>galicia</option>
+        <option>la rioja</option>
+        <option>madrid</option>
+        <option>navarra</option>
+        <option>pais vasco</option>
+        <option>murcia</option>
+        <option>ceuta</option>
+        <option>melilla</option>
+        </select>
+
+        <label for='provincias'>Provincias: </label>
+        <select id='provincias' name='provincias'>
+        <option selected='selected' id="optionQuitar">----------</option>
+        </select>
+    </form>
+
+    <script>
+
+        var xhr;  //Variable para invocar conexión con XMLHttpRequest()
+        var comunidadUser;          
+        var provinciasServer;
+        var objetoPeticionProvincias = new Object();  //Objeto para guardar el .json
+        
+
+        document.addEventListener('readystatechange', inicializar,false);
+        function inicializar() 
+        {
+            if (document.readyState == 'complete') 
+            {
+                comunidadUser = document.getElementById('comunidad');
+                provinciasServer = document.getElementById('provincias');
+
+                comunidadUser.addEventListener('change', enviarPeticionAJAX, false);
+            }   
+        }
+
+        function enviarPeticionAJAX(evento) 
+        {
+            if (comunidadUser.value !='') 
+            {
+                console.log('peticion enviada');
+                document.getElementById('provincias').innerHTML = ""; 
+                objetoPeticionProvincias.comunidad = comunidadUser.value;
+                xhr = new XMLHttpRequest();
+                xhr.addEventListener('readystatechange', gestionarRespuesta,false);
+                xhr.open('GET','provincias.json', true);
+                xhr.send(null);
+            }
+        }
+
+        function gestionarRespuesta(e) 
+        {
+            if (e.target.readyState == 4 && e.target.status == 200) 
+            {
+                objetoPeticionProvincias = this.responseText; //Definimos que el objeto sea lo que devuelve el JSON
+                let datos = JSON.parse(this.responseText); //Con lo devuelto del json hacemos  .parse pa pasarlo a array de objetos
+                let provinc = datos[comunidad.value]; //Y sacamos los elementos de cada array con el .value
+
+                console.log(datos);
+                console.log('peticion recibida');
+
+                
+                for (let index = 0; index < provinc.length; index++) 
+                {
+                    var miOption=document.createElement("option");
+                    console.log(provinc[index]);
+                    miOption.innerHTML = provinc[index];
+
+                    provinciasServer.appendChild(miOption);
+                }
+                
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

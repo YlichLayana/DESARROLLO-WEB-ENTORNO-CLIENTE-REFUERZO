@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portada</title>
+    <style type="text/css">
+      body {
+        margin-left: 30px;
+        font-family: sans-serif;
+      }
+      h4 {
+        margin: 0;
+      }
+      div {
+        float: left;
+      }
+      .estiloForm,
+      #encuadraImagen,
+      #datos {
+        background-color: #f3f3f3;
+        border: solid 2px black;
+        margin-left: 10px;
+        width: 300px;
+      }
+      .estiloForm {
+        width: 330px;
+        padding: 10px;
+      }
+      #datos {
+        margin-top: 20px;
+        height: 226px;
+        padding: 10px;
+      }
+      #encuadraImagen {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+      }
+      .estiloForm label {
+        display: block;
+        width: 120px;
+        float: left;
+        text-align: right;
+        margin-bottom: 35px;
+        padding-right: 20px;
+      }
+      br {
+        clear: left;
+      }
+      input[type="submit"],
+      input[type="reset"] {
+        margin: 25px 5px 10px 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>COLEGIO HOGWARTS DE MAGIA Y HECHICERIA</h1>
+
+    <div class="estiloForm">
+      <form>
+        <img src="hogwarts.jpg" alt="" style="height: 5cm; width: 8cm" />
+        <h3>Bienvenid@ sr/a:</h3>
+        <label>Nombre</label><input name="nombre" type="text" value="" /><br />
+        <label>Apellido</label><input name="apellido" type="text" value="" /><br />
+        <h4>¿Desea iniciar el proceso de matriculación?</h4><br/>
+        <input type="text" name="si-no" value="" style="height: 1cm; width: 0.5cm"/>
+      </form>
+    </div>
+
+    <script>
+      var nombre;
+      var apellido;
+      var condicion;
+
+      document.addEventListener("readystatechange", inicializar, false);
+
+      function inicializar() {
+        nombre = document.getElementsByTagName("input")[0];
+        apellido = document.getElementsByTagName("input")[1];
+        condicion = document.getElementsByTagName("input")[2];
+
+        nombre.focus();  // al cargar la pagina se da el foco al primer input
+
+        if (document.readyState == "complete") {
+          //Se llama a los eventos keypress en las cajas
+          nombre.addEventListener("keypress", pulsarNombre, false);
+          apellido.addEventListener("keypress", pulsarApellido, false);
+          condicion.addEventListener("keypress", pulsarCondicion, false);
+        }
+      }
+
+      //metodo para realizar captura de elemento input nombre y ejecutar evento click
+      function pulsarNombre(event) {
+        //variable para capturar el valor del elemento input el cuael es el nombre
+        var captuNom = nombre.value;
+
+        //key contiene el valor de la tecla pulsada
+        //al dar a la tecla esta pasa a realizar el focus al siguien elemento input
+        if (captuNom != "" && event.type == "keypress") {
+          if (event.key == "Enter") {
+            console.log(event.key);
+            console.log("nombre " + captuNom);
+            apellido.focus();
+          }
+        } else if (event.key == "Enter") {
+          alert("Debe Ingresar Datos en Nombre");
+        }
+      }
+
+      //metodo para realizar captura de elemento input apellido y ejecutar evento click
+      function pulsarApellido(event) {
+        //variable para capturar el valor del elemento input en este caso es el apellido
+        var captuApellido = apellido.value;
+
+        //key contiene el valor de la tecla pulsada
+        //al dar a la tecla esta pasa a realizar el focus al siguien elemento input
+        if (captuApellido != "" && event.type == "keypress") {
+          if (event.key == "Enter") {
+            console.log(event.key);
+            console.log("apellido " + captuApellido);
+            condicion.focus();
+          }
+        } else if (event.key == "Enter") {
+          alert("Debe Ingresar Datos en Apellido");
+        }
+      }
+
+      //metodo para realizar captura de elemento input si o no  y ejecutar evento click
+      function pulsarCondicion(event) {
+        var captuNom = nombre.value;
+        var captuApellido = apellido.value;
+        var captuResp = condicion.value;
+        //key contiene el valor de la tecla pulsada
+        //Si este valor es enter se ejecuta el alert
+        if (captuResp != "" && event.type == "keypress") {
+          if (event.key == "Enter") {
+            console.log(event.key);
+            console.log("Respuesta "+captuResp);
+            //Se invoca a transmisión
+
+            if (captuResp.toLowerCase() == "si") {
+              
+              sessionStorage.setItem('nombre', captuNom);
+              sessionStorage.setItem('apellido', captuApellido);
+
+              window.open("director-just-html.html");
+            } 
+            else {
+              limpiar();
+              window.close();
+            }
+          }
+        } else if (event.key == "Enter") {
+          alert("Debe Ingresar SI o NO");
+        }
+      }
+
+      //metodo para limpiar los elementos imput
+      function limpiar() {
+        nombre.value='';
+        apellido.value='';
+        condicion.value='';
+        sessionStorage.clear();
+      }
+    </script>
+  </body>
+</html>

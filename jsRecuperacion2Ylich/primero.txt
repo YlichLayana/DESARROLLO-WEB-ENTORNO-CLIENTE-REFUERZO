@@ -1,0 +1,50 @@
+function randomCaracteres() {
+  var result = [];
+  var numerodeCaracteres = 6; // Este valor  representa el numero de caracteres a generar aleatoriamente y se puede cambiar segun querramos
+  for (var i = 0; i < numerodeCaracteres; i++) {
+    // Genera un número de 0 a 25
+    var ranNum = Math.ceil(Math.random() * 25);
+    // El ASCII de la letra mayúscula'A 'es 65, y el código ASCII de A ~ Z es 65 + 0 ~ 25;
+    // Luego llame a String.fromCharCode () para pasar el valor ASCII, devuelva el carácter correspondiente y presione en la matriz
+    result.push(String.fromCharCode(65 + ranNum));
+  }
+  return result.join(""); // metodo join se usa para unir los elementos del array result
+}
+
+console.log(randomCaracteres());
+
+// variables de elementos input
+var cajaReferencia = (document.getElementsByTagName("input")[0].value =
+  randomCaracteres()); // caja con caracteres aleatorios
+
+var cajaCliente = document.getElementsByTagName("input")[1]; // caja de cliente vacia
+
+var boton = document.getElementsByTagName("input")[2].value; // boton
+
+var contadorError = 0; // contador de errores
+
+cajaCliente.focus(); // hago foco en la caja de cliente
+
+// funcion llamada al realizar click en el boton
+function comprobar() {
+  cajaCliente = document.getElementsByTagName("input")[1].value;
+  if (cajaReferencia == cajaCliente) {
+    console.log("son iguales");
+    alert("Correcto: Los caracteres son coincidentes ");
+    window.close(); //cierra la ventana actual
+    window.open("Ejercicio-2/coches-0-just-html.html"); // abre la ventana siguiente
+  } else {
+    contadorError++;
+    console.log(contadorError);
+    alert("error: Intentelo de nuevo");
+
+    if (contadorError < 3) {
+      //lo limpia
+      cajaCliente = document.getElementsByTagName("input")[1].value = "";
+      var cajaCliente = document.getElementsByTagName("input")[1];
+      cajaCliente.focus();
+    } else {
+      window.close();
+    }
+  }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Director</title>
+    <style type="text/css">
+      body {
+        margin-left: 30px;
+        font-family: sans-serif;
+      }
+      h4 {
+        margin: 0;
+      }
+      div {
+        float: left;
+      }
+      .estiloForm,
+      #encuadraImagen,
+      #datos {
+        background-color: #f3f3f3;
+        border: solid 2px black;
+        margin-left: 10px;
+        width: 300px;
+      }
+      .estiloForm {
+        width: 330px;
+        padding: 10px;
+      }
+      #datos {
+        margin-top: 20px;
+        height: 226px;
+        padding: 10px;
+      }
+      #encuadraImagen {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+      }
+      .estiloForm label {
+        display: block;
+        width: 120px;
+        float: left;
+        text-align: right;
+        margin-bottom: 35px;
+        padding-right: 20px;
+      }
+      br {
+        clear: left;
+      }
+      input[type="submit"],
+      input[type="reset"] {
+        margin: 25px 5px 10px 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ACCEDIENDO A MATRICULACIÓN</h1>
+
+    <div class="estiloForm">
+      <form>
+        <img src="Dumbledore.jpg" alt="" style="height: 10cm; width: 8cm" />
+        <h3>
+          Dumbledore espera encuentren sencillo el proceso de matriculación
+        </h3>
+        <center>
+          <input
+            type="text"
+            name="crono"
+            value=""
+            style="height: 1cm; width: 1cm; font-size: xx-large"
+          />
+        </center>
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", contar, false);
+
+      var numeroSegundos = 5;
+      //Se realiza la cuenta atrás de 5 segundos
+
+      function contar() {
+        document.getElementsByName("crono")[0].value = numeroSegundos;
+        //Si la cuenta atrás se completa se muestra una imágen y se limpia la caja
+        if (numeroSegundos < 0) {
+          window.open("matricula-Hogwarts-just-html.html");
+          limpiar();
+        } else {
+          numeroSegundos--;
+          setTimeout("contar()", 1000);
+        }
+      }
+
+      function limpiar() {
+        //Limpia la caja de texto del cronómetro cuando llega a 0
+        document.getElementsByName("crono")[0].value = "";
+      }
+    </script>
+  </body>
+</html>

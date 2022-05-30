@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<estudiante> 
+<nombre>Isaac Newton</nombre> 
+<calificaciones curso="20/21"> 
+<calificacion materia="Matemáticas" nota="7.5"/> 
+<calificacion materia="Lenguaje" nota="9"/> 
+</calificaciones> 
+</estudiante> 

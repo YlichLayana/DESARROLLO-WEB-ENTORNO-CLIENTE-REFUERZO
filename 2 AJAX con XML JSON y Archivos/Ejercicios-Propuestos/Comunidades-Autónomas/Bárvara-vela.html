@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejerProvincias</title>
+</head>
+<body>
+    <header>
+        <h2>Ejer Ajas</h2>
+        <h4>Comunidades & Provincias</h4>
+    </header><br><br>
+
+    <main>
+        <form action="" method="get" name="formul" id="formul">
+
+            <label  for="selectComunidades">Comunidades:  </label><br>
+            <select name="selectComunidades" id="selectComunidades">
+                <option value="">Seleccione una Comunidad</option>
+                <!--COMUNIDADES_JSON a recorrer&mostrar-->
+            </select><br><br>
+
+            <label  for="selectProvincias">Provincias:  </label><br>
+            <select name="selectProvincias" id="selectProvincias">
+                <!--PROVINCIAS_JSON a recorrer&mostrar-->
+            </select>
+        </form>
+    </main>
+
+
+
+
+    <script>
+        /* VARIABLES */
+        var selectComunidades = document.getElementById("selectComunidades");
+        var selectProvincias  = document.getElementById("selectProvincias");
+        
+
+
+
+        /*1ºCreamos OyenteEvento(Disparado por event_Readystatechange, Lanza funct_mostrarComunidades,)
+         *  Vinculado directamente al DOM(Al estar cargado rellenará las comunidades)
+         *  *Digamos que "sustituye" al onclick de js.
+         */
+        document.addEventListener('DOMContentLoaded', mostrarComunidades, false);
+
+        /*2ºCreamos OyenteEvento(Disparado por event_change, Lanza mostrarProvincias,)
+         *  Vinculado al selectComunidades(Al cambiar la comunidad seleccionada rellenará las Provincias seg´n la comunidad)
+         *  *Digamos que "sustituye" al onclick de js.
+         */
+        selectComunidades.addEventListener('change', mostrarProvincias, false);
+
+
+
+
+        /* FUNCIONES */
+        function mostrarComunidades(){
+            
+            //1ºCreamos Obj_XMLHttpRequest
+            const xhr = new XMLHttpRequest();
+            //2ºAsignamos OyenteEvento(Disparado por event_Readystatechange, Lanza funct_recorrerComunidades, )
+            xhr.addEventListener('readystatechange', recorrerComunidades, false);
+            xhr.open('GET', 'provincias.json', true);
+            xhr.send(null);
+        }
+
+
+        function mostrarProvincias(){
+            //1ºCreamos Obj_XMLHttpRequest
+            const xhr = new XMLHttpRequest();
+            //2ºAsignamos OyenteEvento(Disparado por event_Readystatechange, Lanza funct_recorrerComunidades, )
+            xhr.addEventListener('readystatechange', recorrerProvincias, false);
+            xhr.open('GET', 'provincias.json', true);
+            xhr.send(null);
+        }
+
+
+        function recorrerComunidades(){
+            //console.log(event.target.readyState); -> == 4   -> Petición finalizada
+            //console.log(event.target.status);     -> == 200 -> Petición correcta
+            if ((event.target.readyState == 4) && (event.target.status == 200)){
+                
+                /* Obj.JSON:
+                *     .parse()          -> pasa string a obj_Json para poder recorrerlo
+                *     this.responseText -> respuesta servidor en formato texto
+                */
+                let datosJson= JSON.parse(this.responseText);
+
+                /*Recorremos Obj.JSON:
+                 *  Object.entries() -> convierte objeto en una especie de mapa para poder recorrerlo
+                 */
+                for(let [clave, valor] of Object.entries(datosJson)){
+                    //1ºCreamos ObjHTML Tipo Option:
+                    let opcion = document.createElement('option');
+                    //2ºCreamos nodoTexto -> Comunidad:
+                    let texto = document.createTextNode(clave);
+                    //3ºAñadimos opcion como hijo(texto):
+                    opcion.appendChild(texto);
+                    //4ºAsignamos valor:
+                    opcion.setAttribute("value", clave);
+                    //5ºAñadimos opcion como hijo(select):
+                    selectComunidades.appendChild(opcion);
+                }
+            }
+        }
+
+        
+        function recorrerProvincias(){
+            
+            //console.log(event.target.readyState); -> == 4   -> Petición finalizada
+            //console.log(event.target.status);     -> == 200 -> Petición correcta
+            if ((event.target.readyState == 4) && (event.target.status == 200)){
+
+                /* Obj.JSON:
+                *     .parse()          -> pasa string a obj_Json para poder recorrerlo
+                *     this.responseText -> respuesta servidor en formato texto
+                */
+                let datosJson= JSON.parse(this.responseText);
+                //console.log(datosJson);
+
+                //Obtener Provincias(valores_Json) de comunidad(Claves_Json) seleccionada
+                let provincias = datosJson[selectComunidades.value];
+
+                //Limpiamos el select antes de añadir las nuevas opciones
+                selectProvincias.innerHTML="";
+                for(let i of provincias){
+                    //1ºCreamos ObjHTML Tipo Option:
+                    let opcion = document.createElement('option');
+                    //2ºCreamos nodoTexto -> Provincia:
+                    let texto = document.createTextNode(i);
+                    //3ºAñadimos opcion como hijo(texto):
+                    opcion.appendChild(texto);
+                    //4ºAsignamos valor:
+                    opcion.setAttribute("value", i);
+                    //5ºAñadimos opcion como hijo(select):
+                    selectProvincias.appendChild(opcion);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

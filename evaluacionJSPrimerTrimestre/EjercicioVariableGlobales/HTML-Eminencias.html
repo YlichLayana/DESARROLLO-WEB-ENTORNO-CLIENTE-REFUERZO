@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Eminencias</title>
+</head>
+<body>
+    <table>
+        <tr><td>    
+    <table>
+        <tr><td><label for="">Nombre: </label></td><td><input type="text" name="ficha"></td></tr>     
+        <tr><td><label for="">Apellidos</label></td><td><input type="text" name="ficha"></td></tr>
+        <tr><td><label for="">DNI: </label></td><td><input type="text" name="ficha" disabled></td></tr>
+        <tr><td><label for="">Fecha Nacimiento: </label></td><td><input type="text"  id="born"></td></tr>
+        <tr><td><label for="">Fecha Muerte: </label></td><td><input type="text" id="dead"></td></tr>
+    </table></td><td><img src="ordenador.jpg" width="143" height="144" alt=""></td></tr>
+    <tr><td><input type="button" value="AÑADIR" style="width:40mm;height: 7mm;" onclick="añadir()"></td><td><input type="button" value="BUSCAR" style="width: 40mm;height: 7mm;" onclick="buscar()"></td></tr>
+</table>
+<h3>Principal aportación al mundo</h3>
+<textarea cols="30" rows="5" style="width: 116mm;"></textarea>
+
+<script>
+var nombre=document.getElementsByTagName('input')[0];
+var apellidos=document.getElementsByTagName('input')[1];
+var dni=document.getElementsByTagName('input')[2];
+var fechaNacimiento=document.getElementsByTagName('input')[3];
+var fechaMuerte=document.getElementsByTagName('input')[4];
+var aportacion=document.getElementsByTagName('textarea')[0];
+
+var guardados=new Array();
+function Personas(nombre, apellidos, fechaNacimiento, fechaMuerte,aportacion,nombreImagen){
+    this.nombre=nombre;
+    this.apellidos=apellidos;
+    this.fechaNacimiento=fechaNacimiento;
+    this.fechaMuerte=fechaMuerte;
+    this.dni=nombre.slice(0,1)+apellidos.slice(apellidos.length-3,apellidos.length)+Math.floor(Math.random()*(1000-0))+0;
+    this.aportacion=aportacion;
+    this.nombreImagen=nombreImagen;
+}
+function añadir(){
+    var nombreImagen=prompt("Introduce la inicial y el apellido");
+    var personaAñadir=new Personas(nombre.value,apellidos.value,fechaNacimiento.value,fechaMuerte.value,aportacion.value, nombreImagen);
+    guardados.push(personaAñadir);
+    console.log(guardados);
+    alert(guardados[0].dni);
+    limpiar();
+}
+
+function buscar(){
+    var encontrado=false;
+    for (let i = 0; i < guardados.length; i++) {
+        if(guardados[i].nombre==nombre.value){
+            nombre.value=guardados[i].nombre;
+            apellidos.value=guardados[i].apellidos;
+            dni.value=guardados[i].dni;
+            fechaNacimiento.value=guardados[i].fechaNacimiento;
+            fechaMuerte.value=guardados[i].fechaMuerte;
+            aportacion.value=guardados[i].aportacion;
+            document.getElementsByTagName('img')[0].src=guardados[i].nombreImagen+".jpg";
+            encontrado=true;
+            break;
+        }
+        
+    }
+    if(encontrado==false){
+        alert("no exixte en nuestr base de datos")
+    }
+}
+
+
+function limpiar(){
+    for (let i = 0; i < 5; i++) {
+        document.getElementsByTagName('input')[i].value="";  
+    }
+    aportacion.value="";
+}
+
+</script>
+</body>
+</html>

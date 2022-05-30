@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<procesadores>
+	<procesador fabricante="intel" serie="iX" modelo="i9-9900k" nucleos="16" cache="16MB" frecuencia="5.00GHz" />
+	<procesador fabricante="intel" serie="Xeon" modelo="D-2146NT" nucleos="8" cache="11MB" frecuencia="3.00GHz" />
+	<procesador fabricante="intel" serie="Atom" modelo="C3950" nucleos="16" cache="16MB" frecuencia="2.20GHz" />
+	<procesador fabricante="AMD" serie="Ryzen Threadripper" modelo="2990WX" nucleos="32" cache="64MB" frecuencia="3.00GHz" />
+	<procesador fabricante="AMD" serie="Athlon" modelo="300U" nucleos="2" cache="64MB" frecuencia="2.40GHz" />
+	<procesador fabricante="AMD" serie="Opteron" modelo="X3421" nucleos="4" cache="8MB" frecuencia="3.40GHz" />
+</procesadores>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    //Math.floor Devuelve el máximo entero menor o igual a un número.
+    // Math.random() * (max- min) Retorna un número aleatorio entre 0 (incluido) y 5 (excluido)
+    // se le suma +1 para hacer que muestre desde 1 hasta 5 como resultado 
+      var num = Math.floor(Math.random() * (5 - 0) + 1);
+      console.log(num);
+
+      
+      // Retorna un número aleatorio entre min (incluido) y max (excluido)
+      function getRandomInt(min, max) {
+        return  Math.floor(Math.random() * (max - min) + min);
+      }
+
+      console.log(getRandomInt(0, 5));
+
+
+      var secreto = Math.floor(Math.random() * 100)+1;
+
+    </script>
+  </body>
+</html>

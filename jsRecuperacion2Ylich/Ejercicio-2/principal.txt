@@ -1,0 +1,128 @@
+var marca;
+var precio;
+
+document.addEventListener("readystatechange", inicializar, false);
+
+function inicializar() {
+  marca = document.getElementsByTagName("input")[0];
+  precio = document.getElementsByTagName("input")[1];
+  marca.focus();
+
+  if (document.readyState == "complete") {
+    //Se llama a los eventos keypress en las cajas
+    marca.addEventListener("keypress", enterMarca, false);
+    precio.addEventListener("keypress", enterPrecio, false);
+  }
+}
+
+function desabilitaMarca() {
+  marca = document.getElementsByTagName("input")[0].disabled = true;
+}
+
+function habilitaMarca() {
+  marca = document.getElementsByTagName("input")[0].disabled = false;
+}
+
+function limpiar() {
+  marca = document.getElementsByTagName("input")[0].value = "";
+  precio = document.getElementsByTagName("input")[1].value = "";
+  sessionStorage.clear();
+}
+
+function enterMarca(event) {
+  var captuMarca = document.getElementsByTagName("input")[0].value;
+
+  //key contiene el valor de la tecla pulsada
+  //al dar a la tecla esta pasa a realizar el focus al siguien elemento input
+  if (event.key == "Enter") {
+    console.log(event.key);
+    //crear session para guardar el dato capturado
+    sessionStorage.setItem("marca", captuMarca);
+    console.log(sessionStorage.getItem("marca"));
+
+    precio.focus();
+    desabilitaMarca();
+  }
+}
+
+function enterPrecio(event) {
+  var captuPrecio = document.getElementsByTagName("input")[1].value;
+
+  //key contiene el valor de la tecla pulsada
+  //al dar a la tecla esta pasa a realizar el focus al siguien elemento input
+  if (event.key == "Enter") {
+    console.log(event.key);
+    //crear session para guardar el dato capturado
+    sessionStorage.setItem("precio", captuPrecio);
+    console.log(sessionStorage.getItem("precio"));
+    agregar();
+  }
+}
+
+//evento click almanecenar
+
+var vehiculos = [];
+//vehiculos.push({"marca":"Prueba1","precio":"5.2"});
+//console.log(JSON.stringify(vehiculos));
+//evento click enviar
+
+function agregar() {
+  // alert(sessionStorage.getItem('marca'));
+  // alert(sessionStorage.getItem('precio'));
+
+  vehiculos.push({
+    marca: sessionStorage.getItem("marca"),
+    precio: sessionStorage.getItem("precio"),
+  });
+  console.log(JSON.stringify(vehiculos));
+
+  limpiar();
+  habilitaMarca();
+  inicializar();
+}
+
+//Se llama a la función del boton almacenar con addEeventListener
+document.addEventListener("readystatechange", almacenar, false);
+
+function almacenar(evento) {
+    var captuPrecio = document.getElementsByTagName("input")[1].value;
+    sessionStorage.setItem("precioBtn", captuPrecio);
+   
+  
+  //Nos situamos en el elemento boton
+  if (document.readyState == "complete") {
+    document.getElementById("storeButton").addEventListener(
+      "click",
+      function () {
+        
+        vehiculos.push({
+          marca: sessionStorage.getItem("marca"),
+          precio: sessionStorage.getItem("precioBtn"),
+        });
+        console.log(JSON.stringify(vehiculos));
+      },
+      false
+    );
+  }
+
+}
+
+
+//Se llama a la función del boton almacenar con addEeventListener
+document.addEventListener("readystatechange", enviarDat, false);
+function enviarDat(evento) {
+    
+   
+  //let contador = 0;
+  //Nos situamos en el elemento boton
+  if (document.readyState == "complete") {
+    document.getElementById("retrieveButton").addEventListener(
+      "click",
+      function () {
+       
+      },
+      false
+    );
+  }
+
+}

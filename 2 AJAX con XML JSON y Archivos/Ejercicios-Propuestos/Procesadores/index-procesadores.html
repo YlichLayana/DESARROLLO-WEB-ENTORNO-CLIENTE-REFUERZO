@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<HTML>
+<head><meta charset="UTF-8">
+<TITLE>HTML HACIA XML CON XHR</TITLE>
+<script language="javascript">
+var xhr;
+var cjaentrada;
+var pantalla;
+var docXML;
+var micros;
+var pulsador;
+
+document.addEventListener("DOMContentLoaded",inicializar,true);
+function inicializar(){
+	cjaentrada=document.getElementsByTagName("input")[0];
+	cjaentrada.addEventListener("change",enviarpeticion,false);
+	pantalla=document.getElementById("modelos");
+	pulsador=document.getElementById("bton");
+	pulsador.addEventListener("click",cargatipos,false);
+	cjaentrada.focus();
+}
+
+function enviarpeticion(e){
+	if (cjaentrada.value != ""){
+		cjaentrada.disabled=true;
+		xhr=new XMLHttpRequest();
+		docXML=new FormData(document.form0);
+		xhr.addEventListener("readystatechange",gestionarRespuesta,false);
+		xhr.open("POST","cpus.xml",true)
+		xhr.send(null);
+	}else{
+		alert("Debe escribir en la caja \n un fabricante de procesadores: \n Intel o AMD");
+	}
+}
+
+function gestionarRespuesta(e){
+	if (e.target.readyState == 4 && e.target.status == 200){
+		alert(e.target.responseXML);
+		docXML=e.target.responseXML;
+		alert(docXML.getElementsByTagName('procesador')[0].getAttribute('modelo'));
+			
+	}
+}
+function cargatipos(){
+	alert(docXML);
+	micros=docXML.getElementsByTagName('procesador');
+	cjaentrada.disabled=false;
+	alert(micros.length);
+
+
+}
+</script>
+<body>
+<form name="form0">
+<label>FABRICANTE DEL PROCESADOR</label><BR><input type="textbox" value=""><BR><BR>
+<input type="button" id="bton" value="Visualizar"><BR><BR>
+<textarea id="modelos" rows="20" cols="30"></textarea>
+</form>
+</body>
+</html>
+
+

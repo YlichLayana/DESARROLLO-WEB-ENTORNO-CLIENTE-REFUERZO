@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>SUPERHEROES QUE IMPARTEN JUSTICIA</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Faster+One"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+
+  <body>
+    <header>
+      <h2>ESPERANDO CONEXIÓN A BBDD . . . . . .</h2>
+    </header>
+
+    <section></section>
+
+    <script>
+      var header;
+      var section;
+      var ObjRespSuperHeroes;
+      var elementEliminar;
+      var timer;
+
+      document.addEventListener("DOMContentLoaded", inicializarDOM, false);
+
+      //!funcion para inicializar elemento con lo que trabajaremos
+      function inicializarDOM() {
+        header = document.getElementsByTagName("header")[0];
+        section = document.getElementsByTagName("section")[0];
+        timer = setTimeout(enviarPeticionAJAX, 3000);
+      }
+
+      function enviarPeticionAJAX() {
+        
+        while (header.firstElementChild) {
+          header.removeChild(header.firstElementChild);
+        }
+        //carga del JSON
+        var URL = "ligajusticia.json";
+        var conexion = new XMLHttpRequest();
+
+        conexion.addEventListener("readystatechange", enviarRespuestaAJAX, false);
+        conexion.open("GET", URL);
+        conexion.send();
+      }
+
+      //!funcion para enviar respuesta de la peticion al json
+      function enviarRespuestaAJAX(evento) {
+        console.log("tipo de estado: " + evento.target.readyState);
+
+        //Cuando readyState es 4 y el estado es 200, la respuesta está lista:
+        if (evento.target.readyState == 4) {
+          //petición finalizada
+          if (evento.target.status == 200) {
+            //documento encontrado, respuesta OK
+            ObjRespSuperHeroes = JSON.parse(evento.target.responseText);
+            console.log(ObjRespSuperHeroes);
+            mostraDatosHeader(ObjRespSuperHeroes);
+            mostrarDatosHeroes(ObjRespSuperHeroes);
+          }
+        }
+      }
+
+      //!funcion para mostrar titulos y datos de header
+      function mostraDatosHeader(objetoJson) {
+        var h1Header = document.createElement("h1");
+        h1Header.textContent = objetoJson["squadName"];
+        header.appendChild(h1Header);
+
+        var parrafoHeader = document.createElement("p");
+        parrafoHeader.textContent =
+          "Hometown: " +
+          objetoJson["homeTown"] +
+          " // Formed: " +
+          objetoJson["formed"] +
+          " // Secret Base: " +
+          objetoJson["secretBase"];
+        header.appendChild(parrafoHeader);
+      }
+
+      //funcion para crear las tarjetas de información del héroe
+      function mostrarDatosHeroes(objetoJson) {
+        var heroes = objetoJson["members"];
+        for (var i = 0; i < heroes.length; i++) {
+          var article = document.createElement("article");
+          var h2ArticleHeroes = document.createElement("h2");
+          var parrafo1_Heroes = document.createElement("p");
+          var parrafo2_Heroes = document.createElement("p");
+          var parrafo3_Heroes = document.createElement("p");
+          var listPoderes_Heroes = document.createElement("ul");
+
+          //establezco el <h2> para que contenga el nombre del héroe actual
+          h2ArticleHeroes.textContent = heroes[i].name;
+
+          //creo los párrafos con su identidad secreta, edad y una línea que diga "Superpoderes"
+          parrafo1_Heroes.textContent =
+            "Secret identity: " + heroes[i].secretIdentity;
+          parrafo2_Heroes.textContent = "Age: " + heroes[i].age;
+          parrafo3_Heroes.textContent = "Superpowers: ";
+
+          var superPoderes = heroes[i].powers;
+
+          for (var j = 0; j < superPoderes.length; j++) {
+            var listItem = document.createElement("li");
+            listItem.textContent = superPoderes[j];
+            listPoderes_Heroes.appendChild(listItem);
+          }
+
+          article.appendChild(h2ArticleHeroes);
+          article.appendChild(parrafo1_Heroes);
+          article.appendChild(parrafo2_Heroes);
+          article.appendChild(parrafo3_Heroes);
+          article.appendChild(listPoderes_Heroes);
+
+          section.appendChild(article);
+        }
+      }
+    </script>
+  </body>
+</html>

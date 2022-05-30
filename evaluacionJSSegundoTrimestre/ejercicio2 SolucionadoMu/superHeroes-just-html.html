@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>SUPERHEROES QUE IMPARTEN JUSTICIA</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Faster+One"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+
+  <body>
+    <header>
+      <h2>ESPERANDO CONEXIÓN A BBDD . . . . . .</h2>
+    </header>
+
+    <section></section>
+
+    <script>
+      var objetoRespuesta;
+      var header;
+      var headerH2;
+      var section;
+
+      /*El destino original de este evento es el Document que se ha cargado. Puede escuchar este evento en la Window interfaz para manejarlo en las fases de captura o burbujeo. Para obtener detalles completos sobre este evento, consulte la página en el documento: DOMContentLoaded evento.
+
+      load Se debe usar un evento diferente, , solo para detectar una página completamente cargada. Es un error común utilizar loaddonde DOMContentLoadedsería más apropiado.*/
+
+      window.addEventListener("DOMContentLoaded", (event) => {
+        console.log("DOM fully loaded and parsed");
+      });
+
+      document.addEventListener("DOMContentLoaded", asignarEventos, false);
+
+      //funcion para asignar eventos y crear la peticion al archivo json o por decirlo peticion ajax
+      function asignarEventos(e) {
+        header = document.getElementsByTagName("header")[0];
+        headerH2 = document.getElementsByTagName("h2")[0];
+        section = document.getElementsByTagName("section")[0];
+
+        //Guardo la información del .json para ir luego accediendo
+        let xhr = new XMLHttpRequest();//Lo primero se crea una instancia de XMLHttpRequest()
+        xhr.addEventListener("readystatechange", eventoRespuesta, false);
+
+        //Open inicia la petición, los parámetros obligatorios son los dos primeros. En este caso elegimos el método GET y enseguida la URL a quien se envía la petición.
+        xhr.open("GET", "ligajusticia.json", true);
+
+        //Send envía la petición para acceder al archivo.
+        xhr.send(null);
+
+        //Espero los 3seg
+        let aux = setTimeout(arrancar, 3000);
+      }
+
+
+
+      function eventoRespuesta(e) {
+        //Aquí usaremos una función con una condición en su interior.
+        /*Los posibles valores de readyState son:
+
+          0: petición no inicializada
+          1: conexión con el servidor establecida
+          2: petición recibida
+          3: procesando petición
+          4: petición terminada y respuesta lista*/
+        if (e.target.readyState == 4 && e.target.status == 200) {
+          //Actualizo mi objetoRespuesta que recupera el .json y lo transformo en un objeto
+          objetoRespuesta = JSON.parse(e.target.responseText);
+        }
+      }
+
+      //Activacion del codigo despues de 3seg
+      function arrancar() {
+        //fijo el h2 del header
+        headerH2.textContent = objetoRespuesta.squadName;
+
+        //Recorro el mi objetoRespuesta, creo un p y lo añando a al header el html
+        let p = document.createElement("p");
+        let msg = "";
+
+        for (let element in objetoRespuesta) {
+          //no cojo el primer elemento
+          if (element == "squadName") {
+            continue;
+          }
+          //el utlimo elemento tiene una instrucción diferente
+          if (element == "active") {
+            msg += element + ": " + objetoRespuesta[element];
+            break;
+          }
+          //Elementos normales
+          msg += element + ": " + objetoRespuesta[element] + " // ";
+        }
+        p.textContent = msg; //añado el texto a mi p
+
+        header.appendChild(p); //Agrego el p al header del html
+
+        let heroes = objetoRespuesta.members;
+        for (let element of heroes) {
+          let article = document.createElement("article");
+          let h2 = document.createElement("h2");
+          h2.textContent = element.name;
+
+          article.appendChild(h2);
+          section.appendChild(article);
+
+          let pIdentidad = document.createElement("p");
+          let pEdad = document.createElement("p");
+          let pSuperpoderes = document.createElement("p");
+
+          pIdentidad.textContent =
+            "Identidad Secreta: " + element.secretIdentity;
+          article.appendChild(pIdentidad);
+          pEdad.textContent = "Edad: " + element.age;
+          article.appendChild(pEdad);
+          pSuperpoderes.textContent = "Super poderes: ";
+          let lista = document.createElement("ul");
+          for (let poder of element.powers) {
+            let li = document.createElement("li");
+            li.textContent = poder;
+            lista.appendChild(li);
+          }
+          article.appendChild(pSuperpoderes);
+          article.appendChild(lista);
+        }
+      }
+    </script>
+  </body>
+</html>

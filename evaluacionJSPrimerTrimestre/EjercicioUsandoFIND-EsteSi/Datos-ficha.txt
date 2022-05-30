@@ -1,0 +1,5 @@
+Albert, Einstein, 00001,"1879,03,14","1955,04,18","Teoría de la relatividad",
+John, von Neumann,00002,"1903,11,28","1957,02,8","Computación",
+Alan, Turing, 00003,"1912,05,23","1954,05,7","Computación, Máquina de Turing",
+Dennis, Ritchie, 00004,"1941,08,9","2011,09,11","Crea Lenguaje C y SO Unix",
+Brian, Kernighan,00005,"1942,00,1",   ,"Lenguaje C y Unix"

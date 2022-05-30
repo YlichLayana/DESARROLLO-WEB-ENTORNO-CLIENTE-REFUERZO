@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Coches datos</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container" id="formDiv">
+      <form class="form-signin">
+        <h1>Introduce detalles</h1>
+        <label for="carBrand" class="sr-only">Car</label>
+
+        <input type="text" name="marca" id="carBrand" class="form-control" placeholder="Marca de coche"
+        /><br />
+
+        <label for="carPrice" class="sr-only">Price</label>
+
+        <input type="text" name="precio" id="carPrice" class="form-control" placeholder="Precio" required
+        /><br />
+
+        <input type="button" class="btn btn-lg btn-danger btn-block" id="storeButton" value="Almacenar Coches"
+          
+        /><br />
+
+        <input type="button" class="btn btn-lg btn-primary btn-block" id="carForm" value="Enviar"
+        />
+      </form>
+    </div>
+
+    <script src="principal.js"></script>
+  </body>
+</html>

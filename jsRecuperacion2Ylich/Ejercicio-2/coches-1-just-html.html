@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+    <title>Coches informe</title>
+  </head>
+  <body>
+    <h2>RECUPERANDO INFORMACIÓN</h2>
+    <button class="btn btn-lg btn-primary btn-block" id="retrieveButton">
+      Buscar en almacén</button
+    ><br /><br />
+    <div id="retrieve"></div>
+    <br />
+    <div>
+      <button class="btn btn-lg btn-danger btn-block" id="removeButton">
+        Eliminar Almacén</button
+      ><br /><br />
+      <button class="btn btn-lg btn-danger btn-block" id="clearButton">
+        Limpiar todo
+      </button>
+    </div>
+  </body>
+
+  <script>
+    var datos; // variable para recuperar la informacion o datos del json
+    var datosObj; // variable para hacer la conversion de texto del json a un array de objetos
+    var resu = ""; // variable a la cual le concateno los datos obtenido al rrecorre el array
+
+    /*El evento "click" se dispara cuando se presiona el botón de un dispositivo de entrada (Mouse o Mousepad) sobre un elemento. 
+    en este caso este evento se dispara al dar click al elemento retrieveButton*/
+    document.getElementById("retrieveButton").addEventListener("click", function (event) {
+        console.log("realizo Click en Buscar");
+        datos = localStorage.getItem("datosJSON");
+        datosObj = JSON.parse(datos);
+        console.log(datosObj);
+        if (datosObj != null) {
+          document.getElementById("retrieve").innerHTML =
+            resu += `<table class="table">
+            <thead>
+              <tr>
+                <th scope="col">MARCA</th>
+                <th scope="col">PRECIO</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+          for (const iterator of datosObj) {
+            console.log(iterator.marca);
+            document.getElementById("retrieve").innerHTML = resu +=
+              `
+            <tr>
+              <td>` +
+              iterator.marca +
+              `</td>
+              <td>` +
+              iterator.precio +
+              `</td>
+            </tr> <br>
+            `;
+          }
+          `</tbody>
+        </table>`;
+        }
+        else{
+          document.getElementById("retrieve").innerHTML =
+            resu="Cargando... Al parecer No existen datos!"
+        }
+      },
+      false
+    );
+
+    //evento en boton eliminar para eliminar las variables creadas al realizar busqueda
+    document.getElementById("removeButton").addEventListener("click", function (evento) {
+        console.log("realizo Click en Limpiar");
+        localStorage.clear();
+    });
+
+    //evento en boton limpiar para limpiar la pantalla que se genera al realizar busqueda
+    document.getElementById("clearButton").addEventListener("click", function (evento) {
+        console.log("realizo Click en Limpiar");
+        document.getElementById("retrieve").innerHTML = resu = "";
+    });
+  </script>
+</html>

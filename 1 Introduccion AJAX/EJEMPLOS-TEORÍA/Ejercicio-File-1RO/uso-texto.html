@@ -1,0 +1,47 @@
+<html>
+<head>
+	<script>
+
+	var xhr;
+	var presentacion;
+	var boton;
+
+	function enviarPeticionAJAX(evento) {
+		
+			boton.disabled = true;
+			xhr = new XMLHttpRequest();
+			xhr.addEventListener('readystatechange', gestionarRespuesta, false);
+			xhr.open('GET', 'saludo.txt', true);
+			xhr.send(null);
+									
+	}
+
+	function gestionarRespuesta(evento) {
+		if (evento.target.readyState == 4 && evento.target.status == 200) {
+			
+			boton.disabled = false;
+			presentacion.innerHTML = evento.target.responseText;
+		}
+	}
+
+
+	function inicializar(){
+	if (document.readyState == 'complete') {
+		presentacion = document.getElementById('capa');
+		boton = document.getElementById('cambiar');
+		boton.addEventListener('click', enviarPeticionAJAX, false);
+		
+		}
+	}
+
+	document.addEventListener('readystatechange',inicializar, false);
+	</script>
+</head>
+
+<body>
+
+<div id="capa"><h2>Cambia el texto pulsando sobre el boton</h2></div>
+<button id="cambiar" type="button">Cambia contenido</button>
+
+</body>
+</html

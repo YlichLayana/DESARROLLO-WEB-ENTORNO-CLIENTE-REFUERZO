@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>JavaScript Sets</h2>
+    <p id="demo"></p>
+
+    <script>
+      var num = [1, 2, 3, 4, 4, 5, 3];
+
+      var sinrepetidos = new Set(num); //aqui lo que hace es al instaciar el set elimana los numeros repetidos
+
+      // Listar todos los  Elements recorriendolo con un foreach
+      let text = "";
+      sinrepetidos.forEach(function (value) {
+        text += value + " ";
+      });
+
+      document.getElementById("demo").innerHTML = text;
+    </script>
+  </body>
+</html>

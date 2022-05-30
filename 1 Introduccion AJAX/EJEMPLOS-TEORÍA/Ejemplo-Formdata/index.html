@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head><meta charset='UTF-8'/>
+		<title>AJAX</title>
+		<style>
+		</style>
+		<script>
+			var xhr;
+			var alumno;
+			var materia;
+			var calificacion;
+			var datos;
+			
+			function enviarPeticionAJAX(evento) {
+				if (alumno.value !='' && materia.value != ''){					
+					datos = new FormData(document.forms[0]);
+					alumno.disabled = true;
+					materia.disabled = true;						
+					datos.append('curso','20/21');
+					xhr = new XMLHttpRequest();
+					xhr.addEventListener('readystatechange', gestionarRespuesta, false);
+					xhr.open('POST', 'ajax.php', true);
+					xhr.send(datos);
+				}				
+			}
+
+			function gestionarRespuesta(evento) {
+				if (evento.target.readyState == 4 && evento.target.status == 200) {
+					alumno.disabled = false;
+					materia.disabled = false;
+					calificacion.value = evento.target.responseText;
+				}
+			}
+
+			document.addEventListener('readystatechange', inicializar, false);
+
+			function inicializar() {
+				if (document.readyState == 'complete') {
+					alumno = document.getElementById('alumno');
+					materia = document.getElementById('materia');
+					calificacion = document.getElementById('calificacion');
+					alumno.addEventListener('change', enviarPeticionAJAX, false);
+					materia.addEventListener('change', enviarPeticionAJAX, false);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<form id='formulario'>
+			<label for='alumno'>Alumno: </label>
+			<select id='alumno' name='alumnoF'>
+				<option value='' selected='selected'>--Elija un alumno--</option>
+				<option>Albert Einstein</option>
+				<option>Marie Courie</option>
+			</select>
+			<label for='materia'>Materia: </label>
+			<select id='materia' name='materiaF'>
+				<option value='' selected='selected'>--Elija una materia--</option>
+				<option>Lenguaje</option>
+				<option>Matemàticas</option>
+			</select>
+			<label for='calificacion'>Calificaci&oacute;n: </label>
+			<input type='text' readonly='readonly' id='calificacion'/>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="informacion"></div>
+
+    <script>
+
+        var capa, h1;
+
+        document.addEventListener("DOMContentLoaded", addElemento, false);
+
+        function addElemento(){
+
+            var lugar = document.getElementById("informacion");
+           
+            var nuevoElemento = document.createElement("h1");
+            var nuevoTexto = document.createTextNode("Cargando el Nombre de la Web actual");
+
+            var nuevo = nuevoElemento.appendChild(nuevoTexto);
+            console.log(nuevo);
+            
+            lugar.style.textAlign = "center"
+            lugar.appendChild(nuevo)
+
+
+            
+
+            var navegadorObjecto = navigator.userAgent
+            console.log(navegadorObjecto)
+
+            
+            if(navegadorObjecto.indexOf("Chrome") > -1){
+                console.log('Google Chrome');
+                
+                capa = document.getElementById("informacion");
+                h1 = document.createElement("h1");
+                h1.innerHTML = 'Google Chrome';
+                console.log(h1);
+                capa.style.textAlign = "center"
+                capa.appendChild(h1);
+
+                
+            }else if(navegadorObjecto.indexOf("Firefox") > -1){
+                console.log('Mozilla Firefox')
+
+                capa = document.getElementById("informacion");
+                h1 = document.createElement("h1");
+                h1.innerHTML = 'Mozilla Firefox';
+                console.log(h1);
+                capa.style.textAlign = "center"
+                capa.appendChild(h1);
+                
+            }
+            
+        }
+
+
+        
+    </script>
+</body>
+</html>

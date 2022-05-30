@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="button" value="Genera una tabla" />
+
+    <script>
+
+      var boton;
+      document.addEventListener("DOMContentLoaded", inicializar, false);
+
+      function inicializar() {
+        boton = document.getElementsByTagName("input")[0];
+      
+        boton.addEventListener("click", genera_tabla, false);
+      }
+
+      function genera_tabla() {
+        // Obtener la referencia del elemento body
+        var body = document.getElementsByTagName("body")[0];
+
+        // Crea un elemento <table> y un elemento <tbody>
+        var tabla = document.createElement("table");
+        
+        var tblBody = document.createElement("tbody");
+
+        // Crea las celdas, las cuales seran las 10 filas
+        for (var i = 0; i < 10; i++) {
+          // Crea las filas o filas de la tabla
+          var fila = document.createElement("tr");
+
+          for (var j = 0; j < 4; j++) {
+            //4 columnas
+            // Crea un elemento <td> y un nodo de texto, haz que el nodo de
+            // texto sea el contenido de <td>, ubica el elemento <td> al final
+            // de la fila de la tabla
+            var celda = document.createElement("td");
+            var textoCelda = document.createTextNode("celda en la fila " + i + ", columna " + j);
+
+            celda.appendChild(textoCelda);
+            fila.appendChild(celda);
+          }
+
+          // agrega la fila al final de la tabla (al final del elemento tblbody)
+          tblBody.appendChild(fila);
+        }
+
+        // posiciona el <tbody> debajo del elemento <table>
+        tabla.appendChild(tblBody);
+        // appends <table> into <body>
+        body.appendChild(tabla);
+
+        // aplico que ocupe toda la pagina
+        tabla.setAttribute("width", "100%")
+        
+        // modifica el atributo "border" de la tabla y lo fija a "2";
+        tabla.setAttribute("border", "2");
+
+        // modifica el atributo "bordercolor" de la tabla y lo fija a "negro";
+        tabla.setAttribute("bordercolor", "000000")
+
+        //tabla.setAttribute("bgcolor", 'red');
+      }
+    </script>
+  </body>
+</html>

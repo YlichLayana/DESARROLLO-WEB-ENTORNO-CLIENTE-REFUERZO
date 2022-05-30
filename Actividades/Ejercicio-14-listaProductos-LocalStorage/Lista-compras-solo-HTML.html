@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<title>Ejemplo de uso LocalStorage HTML5</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="HTML,CSS">
+<link rel="stylesheet" href="StorageStyle.css">
+</head>
+<body>
+	<h1>Introduzca Items y Cantidad</h1>
+	<form name="ShoppingList">
+
+		<div id="PlayArea">
+			<table>
+				<tr>
+					<td><b>Item:</b><input type=text name=name></td>
+					<td><b>Cantidad:</b><input type=text name=data></td>
+				</tr>
+
+				<tr>
+					<td>
+					    <input type=button value="SALVAR"> 
+					    <input type=button value="MODIFICAR"> 
+					    <input type=button value="ELIMINAR">
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="items_table">
+			<h2>LISTA DE COMPRAS</h2>
+			<table id=list></table>
+			<p>
+				<label><input type=button value="Clear">
+					<i>* Elimina todos los items</i></label>
+			</p>
+		</div>
+	</form>
+
+	<script src="listaCompras.js"></script>
+</body>
+</html>

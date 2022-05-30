@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML HACIA XML CON XHR</title>
+    <script
+      type="text/javascript"
+      src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=siAl-z8vseqBzskNsfCmCKQGcqVUBgoWe07o2PdKxFSTxBcT_Dv6lPnu4zHc0jMj4TfAa5Yq4yNAqiSTfdEdd5GOTohnGasgP0u14U12PSbZUR0xBJrXzLJvbMJWX5k6Qief3pdXMa0l5cgbH4YPK_qg9HcBAaA6STolhvdC-C217roWnS2M5OgoCLai_csOsLhA7t3nN6xrBkVjWY7gXmCvUZB7yuivYEtvSGW-Ba9p118tJDok6AWP2nRlfaY52fs49t8-wozeWUIDE-FG9AjZJBvPLvs1FspiCpecNaubvVyd7rR6x7RzSBXhyfT6Ok7Kts4udV1aylBUC6diiYuLHZOHYmrKcTCSkyR_hntVKPoUTVwIVkh4mGTJWSKWkB80ZlvTGVJgupd8b4uOYK8tLZbHs_sXDvTTx6eSjN13yu9_HV_GNncFl5AgKsMfwKeCH9MmgFul_qMw6E09pLLMlVz0VJ_h75ooelsgNi-K8e0btTCXquWLMjN6TeEpuRVcDxHSySDdQ4fs4I1faZj4XizTOF94R3JSlUwY4DXZouowzsoVsAJiiQ3OkoYhGr2NRKkTiZIjmA6VbXm2jIF_N_f23TsWzokwENFQWkMNYZCiwBRDU7xDbnUuwKOPSXAhJzYe-L-q6A0BH5cFC2iSRe0GXR5mQOivAFtKvqUQ7P56KyC52B8IG1JOBp9WQzdz9rz1L-6e_YUM8R9w2au2xr0G4rAy8trzdaB30gcXT_eAHq5m2OXxMxiy7yJYqsw3T9HswirdV2oqWMDQfTPl9DAno7SVw8V5PUZmviQSsZEQrFcO7dLbYtIqWIOTEBVFG_FMb4vZUHj1NIZc7ohLKcelo5dgvtTFiDuTPwAFipIzHA8IjCJGUQWoi8yoDXIGUEwGtQOIpDHnEn-AkX9LKsDNWQaYlErqIli4ySOyFDcnlrTCqAWscoa_fa2AyUKEeqxQiB_AAiPYr8ChwQ79Q1cRNbivKtgdPg4uov0cbwIdaKL1lcCIP4QViOhJckw8rPzA7mozrux_8P9YW_edKo_USderBMt2UGd4ZVFVbzoznR6dTRUr8wz-VQlbOvh-mUZqO7Z8BLB1nOFJx9dj5AJLvG-0_0tddbzhExV_Iz1iYiucT6PtlmFTcDwVPKALghb-BD2WF4cA6DyDAvuPZgDlNGPtgnZ0U-hJtnlZM18svKWjJqerve0or_ozxl0WQIs-XXUfIzxnDTiUzw"
+      nonce="81e9e79ff433d3129fecf6a3f46da534"
+      charset="UTF-8"
+    ></script>
+    <link
+      rel="stylesheet"
+      crossorigin="anonymous"
+      href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9tYWlsLWF0dGFjaG1lbnQuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2F0dGFjaG1lbnQvdS8wLz91aT0yJmlrPTI3NGIwOWYxNGQmYXR0aWQ9MC4xJnBlcm1tc2dpZD1tc2ctZjoxNzI0OTExOTcwMzc0NDE2MTE5JnRoPTE3ZjAxZTRjNGVmYzc2Zjcmdmlldz1hdHQmZGlzcD1zYWZlJnJlYWxhdHRpZD1mX2t6cGQxbW93MCZzYWRkYmF0PUFOR2pkSjlZX3VhckgyYmpGWDE0N2NiWi1rSUpOR0N5QU0tQmNacExlc0hXeldVeDdYX3I1UkZWNm43Q1FTMHFaWTFwN0VhR3RqRVVTcnpvRVlIV2lMOVJ6ZE1KUEVVbXR1ZldPM29lb3pfcldsV0szaDlKc1paUkxLcjhvaUpWaGgtcTFiNktLVlo0cXFLR0lZWGNLTTgwM001OXdUcXMydG56T2JKM29FZmZFeERHN1YzTFJmUGFkZURCa012ckNCS3RLdUVqVlM4bEhhMjVXN2E0TGhwOEd5Nnc4eVVJb2J5aWZYTk9LZF81b3d6UTVUNllNOG1MNVZZcXFkdUpOalNjd2ZpUUdDaVJtdUJCTDRaVGx5aUk0WjZhV1luRmp5ZUdKd0hIYWxqS1duWVd1X3pmejlHSHhON29Xby1DU1lKQjg1MnRXUXBPeS1CVTFlWUxOSUZMODNSR0FPSUhyLWI5T3k4SVZuWlBSNVNqcUFxdTBydW9WaVlZTjgwZ1hNNFhDb2loQlZqZ2wxVU9TUE9VRy1Jb1RIdG42RjNwLUtkZlN1MURfOE5EODBNRFpSOGhMMENzaTVMWE4wX0Vtb25yM3p2RjAyMTh6X0R0LVJkcl85dVlxekNHeTJPT1pGS25NdFdNWDU4WVBvT0FNTEU3SmJxbHk1ZEtrMVhGQ0E5eWxILWpBdk1IOS00d0JBTHlZRW9ZT0RJTlFaMm9HTHV2YThKb2l5SXRnUjQwUy14QWdpWUo0MWZlemF2NlhQaDBDMTcyV0g2cjdBYWRsT3BobzFQOERUbmZhS2d6YUkzSG1ETU92WnVrNVRuX0VubTQ1cVBseU1PRWpwUXNTTlhLdGlHZW9EeW45NkhzcjJWeVNoQ2N1VnVubGkxY25nWkRKcTJyVHdLWWxfWWYtUVdLM0FueFluOUR1Sms"
+    />
+    <script>
+
+      var xhr;
+      var datos;
+
+      function enviarPeticionAJAX(evento) {
+        xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", gestionarRespuesta, false);
+        xhr.open("GET", "cpus.xml", true);
+        xhr.send(null);
+      }
+
+      function gestionarRespuesta(evento) {
+        if (evento.target.readyState == 4 && evento.target.status == 200) {
+          elementos = "";
+          datos = evento.target.responseXML;
+          procesadores = datos.getElementsByTagName("procesador");
+          for (let i = 0; i < procesadores.length; i++) {
+            if (
+              document.getElementsByTagName("input")[0].value ==
+              procesadores[i].getAttribute("fabricante")
+            ) {
+              for (const j of procesadores[i].attributes) {
+                elementos += j.value + "\n";
+              }
+            }
+          }
+          document.getElementsByTagName("textarea")[0].value = elementos;
+        }
+      }
+
+      function iniciar(evento) {
+        document
+          .getElementById("bton")
+          .addEventListener("click", enviarPeticionAJAX);
+      }
+
+      document.addEventListener("DOMContentLoaded", iniciar, false);
+    </script>
+  </head>
+  <body>
+    <form name="form0">
+      <label>FABRICANTE DEL PROCESADOR</label><br /><input
+        type="textbox"
+        value=""
+      /><br /><br />
+      <input type="button" id="bton" value="Visualizar" /><br /><br />
+      <textarea id="modelos" rows="20" cols="30"></textarea>
+    </form>
+  </body>
+</html>

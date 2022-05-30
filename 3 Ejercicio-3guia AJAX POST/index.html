@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Ejemplo Ajax</title>
+</head>
+<body>
+	<h1>Ejemplo ajax</h1>
+	<div id="respuesta">ACA VA A ESTAR LA RESPUESTA DEL AJAX</div>
+	
+	<script>
+
+		
+		var ajax = new XMLHttpRequest( ); //Javascript y XML Asincronico
+			ajax.open( 'GET', 'ajax.php' );
+			/*ajax.onload = function( ){
+				if( ajax.status == 200 ){ 
+					document.querySelector( '#respuesta' ).innerHTML = ajax.responseText;
+				}else{
+					document.querySelector( '#respuesta' ).innerHTML = 'petición errónea';
+				}
+			}*/
+			
+			ajax.onreadystatechange = function( ){
+				console.log('estado: '+ ajax.readyState)
+				if( ajax.readyState == 4 ){ //petición finalizada
+					if( ajax.status == 200 ){ //documento encontrado, respuesta OK
+						document.querySelector( '#respuesta' ).innerHTML = ajax.responseText;
+					}else{
+						document.querySelector( '#respuesta' ).innerHTML = 'petición errónea';
+					}
+				}else{
+					document.querySelector( '#respuesta' ).innerHTML = 'espere...';
+				}
+			}
+			
+			ajax.send( ); //acá estamos pidiendo que se ejecute el ajax y también le estamos mandando datos
+	</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        var nums = [];
+        var Cantidad = 6;
+
+        for (let index = 0; index < Cantidad; index++) {
+            var aleatorio = Math.floor(Math.random() * 49) + 1
+            if (!nums.includes(aleatorio)) {
+                nums.push(aleatorio);
+            }else{
+                index--;
+            }
+        }
+
+        document.write("Aleatorios Sin Repetir NO Ordenados: "+ nums +'<br>')
+        // nums.sort(); aqui daba error de ordenacion 
+        nums.sort(function(a, b){return a - b});
+      
+        document.write('Aleatorios Sin repetir Ordenados: '+nums+'<br><br>');
+
+
+        //obtengo una elemento de los 6 numeros del array nums
+        var complentario = nums[Math.floor(Math.random() * nums.length)]
+
+        //esta funcion remueve el numero complementario del array nums
+        //  recibe el array generado con 6 valores unicos, y remueve el numero 
+        //  o valor complemantario que hemos obtenido aletoriamente  
+        function removerComplemetario(array, valor) {
+            //Obtengo la posicion que  contenga el valor pasado
+            var numeroComplementario = array.indexOf(valor);
+            array.splice(numeroComplementario, 1);
+        }
+
+        removerComplemetario(nums, complentario);
+        
+        document.write('Numeros Bonoloto: ' + nums + "<br>Complementario: " + complentario);
+
+    </script>
+</body>
+
+</html>

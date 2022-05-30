@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Obteniendo meses</title>
+    <script language="javascript">
+      var bton;
+      var valor;
+      var resultado;
+      var xhr;
+	  
+      document.addEventListener("DOMContentLoaded", inicializar, false);
+
+      function inicializar() {
+        valor = document.getElementsByName("valor")[0];
+        bton = document.getElementById("boton");
+        resultado = document.getElementById("resultado");
+        bton.addEventListener("click", enviarpeticion, false);
+      }
+
+      function enviarpeticion(evento) {
+        if (valor.value >= 1 && valor.value <= 12) {
+          valor.disabled = true;
+          xhr = new XMLHttpRequest();
+          xhr.addEventListener("readystatechange", gestionarRespuesta, false);
+          xhr.open("GET", "meses.php?num=" + valor.value, true);
+          xhr.send(null);
+        } else {
+          alert("Debe introducir un número entre 1 y 12");
+        }
+      }
+
+      function gestionarRespuesta(e) {
+        if (e.target.readyState == 4 && e.target.status == 200) {
+          resultado.innerHTML = e.target.responseText;
+          valor.disabled = false;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" name="valor" value="" />
+    <input type="button" id="boton" value="consultar" />
+    <div id="resultado"></div>
+  </body>
+</html>

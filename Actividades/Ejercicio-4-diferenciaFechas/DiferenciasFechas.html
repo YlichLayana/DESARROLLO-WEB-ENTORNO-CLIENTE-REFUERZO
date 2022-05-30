@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Diferencias de Fechas</h1>
+
+    Fecha1: <input type="date" /> <br />
+    <br />
+
+    Fecha2: <input type="date" /> <br />
+    <br />
+
+    <input type="button" value="Calcular dias" />
+
+    <script>
+      //var boton;
+      var diferencia;
+      document.addEventListener("DOMContentLoaded", inicializar, false);
+
+      function inicializar() {
+        fecha1 = document.getElementsByTagName("input")[0];
+        fecha2 = document.getElementsByTagName("input")[1];
+        //boton = document.getElementsByTagName("input")[2];
+
+        document.addEventListener("click", mostrarResultado, false);
+      }
+
+      function mostrarResultado(event) {
+        let fechaInicio = new Date(fecha1.value).getTime();
+        let fechaFin = new Date(fecha2.value).getTime();
+
+        if (event.target.type == "button") {
+          console.log("probando condicion");
+          if (fechaFin > fechaInicio) {
+            diferencia = fechaFin - fechaInicio;
+            console.log("Faltan " + diferencia / (1000 * 60 * 60 * 24) + " días");
+            alert("Faltan " + diferencia / (1000 * 60 * 60 * 24) + " días");
+            limpiar();
+          } else {
+            console.log(
+              "La fecha inicial no puede ser mayor, Vuelva a intentar");
+            limpiar();
+          }
+        }
+      }
+
+      function limpiar(){
+        fecha1.value = "";
+        fecha2.value = "";
+      }
+    </script>
+  </body>
+</html>

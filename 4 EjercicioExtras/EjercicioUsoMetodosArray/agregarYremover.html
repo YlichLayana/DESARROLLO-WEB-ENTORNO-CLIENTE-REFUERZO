@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body onload="ejecutar()">
+    <script>
+      function ejecutar() {
+        //SPLICE
+        /* El método splice funciona como una navaja suiza para arrays. Puede hacer todo: insertar, remover y remplazar elementos.*/
+        let arr = ["uno", "dos", "tres"];
+        document.getElementById("arreglo").innerHTML = "Array inicial: "+arr;
+
+        arr.splice(1, 1); // desde el índice 1, remover 1 elemento
+
+        //alert(arr); // ["uno", "tres"]
+        document.getElementById("sliceEliminando").innerHTML = "Array resultante eliminando 1 elemento: " + arr;
+
+        /*El método splice también es capaz de insertar elementos sin remover ningún otro. Para eso necesitamos establecer deleteCount en 0:*/
+
+        // desde el index 2
+        // remover 0
+        // después insertar "el", "complejo" y "language"
+        arr.splice(2, 0, "el", "complejo", "language");
+        document.getElementById("sliceAgregando").innerHTML = "Array resultante agregando elementos: " + arr;
+
+        /*CONCAT
+        El método arr.concat crea un nuevo array que incluye los valores de otros arrays y elementos adicionales.*/
+
+        let arr2 = [1, 2];
+        document.getElementById("SinConcatenado").innerHTML = "Array inicial: "+ arr2
+        // crea un array a partir de: arr y [3,4]
+       // alert(arr2.concat([3, 4])); // 1,2,3,4
+        var result =arr2.concat([3, 4]);
+        document.getElementById("concatenado").innerHTML = "Array resultante: " + result;
+
+        //PUSH
+        //push este metodo agrega elementos o agrega ítems al final,
+        result.push(5); //1,2,3,4,5 
+        result.push(5); //1,2,3,4,5,5
+        document.getElementById("push").innerHTML = "Array resultante con Push: " + result;
+
+        //UNSHIFT
+        //Agrega elementos o  agrega ítems al principio.
+        result.unshift(0);//0,1,2,3,4,5,5
+        document.getElementById("unshitf").innerHTML = "Array resultante con unshift: " + result;
+
+        // POP
+        //Elimina el ultimo elemento o extrae un ítem del final
+        result.pop(5);//0,1,2,3,4,5
+        document.getElementById("pop").innerHTML = "Array resultante con pop: " + result;
+
+        //SHIFT
+        //Elimina el primer elemento o extrae un ítem del inicio
+        result.shift(0);//1,2,3,4,5
+        document.getElementById("shift").innerHTML = "Array resultante con shift: " + result;
+      }
+    </script>
+
+    <h3>Eliminar con Splice</h3>
+    <p id="arreglo"></p>
+    <p id="sliceEliminando"></p>
+    <h4>Agregar con Splice</h4>
+    <p id="sliceAgregando"></p>
+
+    <h3>Concatenado Array con Concat</h3>
+    <p id="SinConcatenado"></p>
+    <p id="concatenado"></p>
+    <h3>Agregando al final con Push </h3>
+    <p id="push"></p>
+    <h3>Agregando al inicio con Unshift </h3>
+    <p id="unshitf"></p>
+    <h3>Eliminando al final con pop </h3>
+    <p id="pop"></p>
+    <h3>Eliminando al inicio con shift </h3>
+    <p id="shift"></p>
+  </body>
+</html>
