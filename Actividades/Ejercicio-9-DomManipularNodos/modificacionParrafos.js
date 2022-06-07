@@ -3,8 +3,8 @@ var contarPulse=0;
 var boton;
 
 function inicializa() {
-    
-    document.addEventListener("click", manejarPulsarBoton, false)
+    boton= document.getElementById("boton");
+    boton.addEventListener("click", manejarPulsarBoton, false)
 }
 
 function manejarPulsarBoton(evento){
