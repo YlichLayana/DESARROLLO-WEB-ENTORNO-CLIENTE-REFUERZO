@@ -63,6 +63,4 @@ function manejarPulsarBoton(evento){
     
     }
 
-
-    s
 }
