@@ -44,6 +44,7 @@ function verRadio(event) {
     if (radioButton[0].checked == true) {
       console.log("a elegido pc");
       elementoAutonomia.hidden = true;
+      tipoLapto = false;
       marca.focus();
     }
     if (radioButton[1].checked == true) {
