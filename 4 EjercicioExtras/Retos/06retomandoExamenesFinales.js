@@ -8,7 +8,7 @@
 function sumPairs(numbers, result) {
     var arrayResultante = [];
     for (let i = 0; i < numbers.length; i++) {
-        for (let j = 0; j < numbers.length; j++) {
+        for (let j = i+1; j < numbers.length; j++) {
             if (i !== j && numbers[i] + numbers[j] === result) { 
                 if(arrayResultante.length<2){
                     arrayResultante.push(numbers[i], numbers[j]);
