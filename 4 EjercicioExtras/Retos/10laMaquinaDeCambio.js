@@ -1,3 +1,8 @@
+//Todo: Para mejorar la productividad de la tienda en la que trabajamos, vamos a crear una pequeña máquina que calcula el mínimo número de monedas que debemos usar para dar el cambio de una compra en metálico. Las monedas para cambio que puedes usar son estas: desde  centimo hasta 50 centimos;
+
+//Todo: Tenemos que crear una función que recibe el número de céntimos que hay que devolver al cliente y la función nos da un array con la combinación de monedas mínimas que debemos usar para conseguirlo.
+
+//Todo: La dificultad del reto está en saber utilizar correctamente una estructura que te permita conocer las monedas que tienes disponible para crear el array con la devolución, ya que debes usar siempre el menor número de monedas posible. 
 
 function getCoins (change){
     let monedas = [1, 2, 5, 10, 20, 50];
