@@ -35,8 +35,24 @@
       </div>
 
       <br />
-
       <form action="">
+
+        <fieldset class="row g-3 mt-3">
+            <div class="col-md-6" id="contenido1" style="display: none;">
+              <div class="input-group">
+                <span class="input-group-text">Especialidad</span>
+                <input type="text" aria-label="profesion" class="form-control" id="profesion" required>
+              </div>
+            </div>
+          
+            <div class="col-md-6" id="contenido2" style="display: none;">
+              <div class="input-group">
+                <span class="input-group-text">Años Experiencia</span>
+                <input type="number" aria-label="experiencia" class="form-control" id="experiencia" required>
+              </div>
+            </div>
+        </fieldset>
+
         <div id="contenido3" style="display: none">
           <!--esta se activa y aparece con el check-->
           <fieldset class="row g-3 mt-3">
@@ -79,18 +95,28 @@
     </div>
     <script>
       function showContenido() {
+        element1 = document.getElementById("contenido1");
+        element2 = document.getElementById("contenido2");
         element3 = document.getElementById("contenido3");
         check = document.getElementById("flexCheckDefault");
         inputs = document.getElementsByTagName("input");
 
         if (check.checked) {
+          element1.style.display = "block";
+          element2.style.display = "block";
           element3.style.display = "block";
+          
+          element1.setAttribute("required","");
+          element2.setAttribute("required","");
 
           for (let index = 1; index < inputs.length; index++) {
             inputs[index].setAttribute("required", "");
             console.log(inputs[index]);
           }
+
         } else {
+          element1.style.display = "none";
+          element2.style.display = "none";
           element3.style.display = "none";
         }
       }
