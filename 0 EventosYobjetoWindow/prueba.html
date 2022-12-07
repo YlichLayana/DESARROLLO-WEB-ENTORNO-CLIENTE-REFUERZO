@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class=".container-sm mx-5 mt-3">
+      <h1>Probar Check-Box</h1>
+
+      <!--Aqui tengo el check box para agregar datos si son clientes-->
+      <div class="input-group">
+        <span>¿Quieres ofrecer un Servicio?</span>
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="check"
+          value="1"
+          id="flexCheckDefault"
+          onchange="showContenido()"
+        />
+        <label class="form-check-label" for="flexCheckDefault">
+          Marca aquí!
+        </label>
+      </div>
+
+      <br />
+
+      <form action="">
+        <div id="contenido3" style="display: none">
+          <!--esta se activa y aparece con el check-->
+          <fieldset class="row g-3 mt-3">
+            <legend class="text-primary fw-bold">Datos del Servicio</legend>
+
+            <div class="col-md-8">
+              <div class="input-group">
+                <span class="input-group-text">Servicio</span>
+                <input
+                  type="text"
+                  aria-label="profesion"
+                  class="form-control"
+                  id="profesion"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text">Precio</span>
+                <input
+                  type="text"
+                  aria-label="movil"
+                  class="form-control"
+                  id="movil"
+                />
+              </div>
+            </div>
+
+            <div class="form-floating">
+              <textarea class="form-control" id="floatingTextarea"></textarea>
+              <label for="floatingTextarea">Breve Descripción</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </div>
+      </form>
+    </div>
+    <script>
+      function showContenido() {
+        element3 = document.getElementById("contenido3");
+        check = document.getElementById("flexCheckDefault");
+        inputs = document.getElementsByTagName("input");
+
+        if (check.checked) {
+          element3.style.display = "block";
+
+          for (let index = 1; index < inputs.length; index++) {
+            inputs[index].setAttribute("required", "");
+            console.log(inputs[index]);
+          }
+        } else {
+          element3.style.display = "none";
+        }
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
