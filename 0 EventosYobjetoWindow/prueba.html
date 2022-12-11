@@ -90,15 +90,15 @@
 
         if (check.checked) {
           grupElementOculto.style.display = "block";
-
-          for (let index = 1; index < inputsDatosProfesional.length; index++) {
+          console.log(inputsDatosProfesional.length);
+          for (let index = 2; index < inputsDatosProfesional.length; index++) {
             inputsDatosProfesional[index].setAttribute("required", "");
             console.log(inputsDatosProfesional[index]);
           }
 
         } else {
           grupElementOculto.style.display = "none";
-          for (let index = 1; index < inputsDatosProfesional.length; index++) {
+          for (let index = 2; index < inputsDatosProfesional.length; index++) {
             inputsDatosProfesional[index].removeAttribute("required");
             console.log(inputsDatosProfesional[index]);
           }
