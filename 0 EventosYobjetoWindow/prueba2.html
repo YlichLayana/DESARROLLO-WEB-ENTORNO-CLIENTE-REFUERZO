@@ -12,31 +12,112 @@
 </head>
 <body>
 	<body >
-		
-		<div class="cards">
-			<div class="card border border-info rounded-3" id="miTarjeta1">
-			  <!-- ... contenido de la tarjeta aquí ... -->
-			  	<div class="card-body">    
-					<h5 class="card-title">Teresa Fuentes</h5>    
-					<p class="card-title">Tel-Móvil: 645841224</p>    
+	<div class="container">	
+		<div class="row g-3 my-2">
+			<div class="cards">
+				<div class="card border border-info rounded-3" id="miTarjeta1">
+				<!-- ... contenido de la tarjeta aquí ... -->
+					<div class="card-body">
+						<h5 id="proveedor-nombre" class="card-title">Teresa</h5>    
+						<label for="">Telefono-Móvil: </label>
+						<p id="proveedor-movil" class="card-title">645800024</p> 
+						<p class="card-title">Especialidad: Peinados</p>    
+						<p class="card-text">Precio: $35.0</p>    
+						<p id="servicio-nombre" class="card-text">Categoría: PELUQUERIA</p>   
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-servicio-id="5">Agendar</button>  
+					</div>
+				</div>
+
+				<div class="card border border-info rounded-3" id="miTarjeta2">
+				<!-- ... contenido de la tarjeta aquí ... -->
+				<div class="card-body">    
+					<h5 id="proveedor-nombre" class="card-title">Teresa</h5>    
+					<label for="">Telefono-Móvil: </label><p id="proveedor-movil" class="card-title">Tel-Móvil: 645800024</p> 
 					<p class="card-title">Especialidad: Peinados</p>    
 					<p class="card-text">Precio: $35.0</p>    
-					<p class="card-text">Categoría: PELUQUERIA</p>    
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-servicio-id="5">Agendar</button>  
+					<p id="servicio-nombre" class="card-text">Categoría: PELUQUERIA</p>    
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-servicio-id="6">Agendar</button>  
+					</div>
+				</div>
+
+				<div class="card border border-info rounded-3" id="miTarjeta2">
+					<!-- ... contenido de la tarjeta aquí ... -->
+					<div class="card-body">    
+					<h5 id="proveedor-nombre" class="card-title">Angela</h5>    
+					<p id="proveedor-movil" class="card-title">Tel-Móvil: 645800024</p> 
+					<p class="card-title">Especialidad: Peinados</p>    
+					<p class="card-text">Precio: $35.0</p>    
+					<p id="servicio-nombre" class="card-text">Categoría: PELUQUERIA</p>    
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-servicio-id="7">Agendar</button>  
+					</div>
 				</div>
 			</div>
-			<div class="card border border-info rounded-3" id="miTarjeta2">
-			  <!-- ... contenido de la tarjeta aquí ... -->
-			  <div class="card-body">    
-				<h5 class="card-title">Teresa Fuentes</h5>    
-				<p class="card-title">Tel-Móvil: 645841224</p>    
-				<p class="card-title">Especialidad: Peinados</p>    
-				<p class="card-text">Precio: $35.0</p>    
-				<p class="card-text">Categoría: PELUQUERIA</p>    
-				<button id="myModalBoton2" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-servicio-id="6">Agendar</button>  
-			</div>
+
+
+
+			<div class="cards">
+				<div class="card border border-info rounded-3" id="miTarjeta1">
+				<!-- ... contenido de la tarjeta aquí ... -->
+					<div class="card-body">
+						<h5 id="proveedor-nombre" class="card-title">Karla</h5>    
+						<label for="">Telefono-Móvil: </label>
+						<p id="proveedor-movil" class="card-title">645800024</p> 
+						<p class="card-title">Especialidad: Peinados</p>    
+						<p class="card-text">Precio: $35.0</p>    
+						<p id="servicio-nombre" class="card-text">Categoría: PELUQUERIA</p>   
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-servicio-id="32">Agendar</button>  
+					</div>
+				</div>
+
+				<div class="card border border-info rounded-3" id="miTarjeta2">
+				<!-- ... contenido de la tarjeta aquí ... -->
+				<div class="card-body">    
+					<h5 id="proveedor-nombre" class="card-title">Sara</h5>    
+					<label for="">Telefono-Móvil: </label><p id="proveedor-movil" class="card-title">645800024</p> 
+					<p class="card-title">Especialidad: Peinados</p>    
+					<p class="card-text">Precio: $35.0</p>    
+					<p id="servicio-nombre" class="card-text">Categoría: PELUQUERIA</p>    
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-servicio-id="12">Agendar</button>  
+					</div>
+				</div>
+
+				<div class="card border border-info rounded-3" id="miTarjeta2">
+					<!-- ... contenido de la tarjeta aquí ... -->
+					<div class="card-body">    
+					<h5 id="proveedor-nombre" class="card-title">Helena</h5>    
+					<form>
+						<div class="row mb-2">
+							<label for="proveedor-movil" class="col-sm-2 col-form-label">Tel-Móvil:</label>
+							<div class="col-sm-4">
+							  <input type="text" class="form-control" id="proveedor-movil" value="644521478">
+							</div>
+						</div>
+						<div class="row mb-2">
+							<label for="especialidad" class="col-sm-2 col-form-label">Especialidad:</label>
+							<div class="col-sm-4">
+							  <input type="text" class="form-control" id="especialidad" value="Peinados y Cortes">
+							</div>
+						</div>
+						<div class="row mb-2">
+							<label for="precio" class="col-sm-2 col-form-label">precio:</label>
+							<div class="col-sm-4">
+							  <input type="text" class="form-control" id="precio" value="30">
+							</div>
+						</div>
+						<div class="row mb-2">
+							<label for="servicio-nombre" class="col-sm-2 col-form-label">Categoría:</label>
+							<div class="col-sm-4">
+							  <input type="text" class="form-control" id="servicio-nombre" value="PELUQUERIA">
+							</div>
+						</div>
+					</form>	  
+					  
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-servicio-id="23">Agendar</button>  
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
 
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -56,22 +137,22 @@
 						<!-- Campos oculto del formulario -->
 						<div class="col-6">
 							<label for="inputServicioId" class="form-label">Id Servicio</label>
-							<input type="text" class="form-control" name="servicioId" id="servicioId" disabled>
+							<input type="text" class="form-control" name="servicioId" id="servicioId" readonly>
 						</div>
 
 						<div class="col-6">
 							<label for="inputServicioNombre" class="form-label">Nombre Servicio</label>
-							<input type="text" class="form-control" name="servicioId" id="servicioId" disabled>
+							<input type="text" class="form-control" name="" id="inputServicioNombre" readonly>
 						</div>
 
 						<div class="col-6">
 							<label for="inputProveedorNombre" class="form-label">Proveedor</label>
-							<input type="text" class="form-control" name="servicioId" id="servicioId" disabled>
+							<input type="text" class="form-control" name="" id="inputProveedorNombre" readonly>
 						</div>
 
 						<div class="col-6">
 							<label for="inputProveedorMovil" class="form-label">Tel-Movil</label>
-							<input type="text" class="form-control" name="servicioId" id="servicioId" disabled>
+							<input type="text" class="form-control" name="" id="inputProveedorMovil" readonly>
 						</div>
 
 						<div class="col-md-6">
@@ -98,17 +179,34 @@
 	</div>
 	<!--Fin Modal -->
 
-    <script>
-        document.querySelector('.cards').addEventListener('click', function (event) {
-                    if (event.target.tagName === 'BUTTON') {
-                        var tarjetaPadre = event.target.closest('.card');
-                        var idTarjeta = tarjetaPadre.id;
-                        var valorServicioId = event.target.getAttribute('data-servicio-id');
-                        console.log(idTarjeta, valorServicioId);
-                        document.querySelector('#servicioId').value = valorServicioId;
-                    }
-                });
-    </script>
+   
+	<script>
+		// Obtener todos los botones con la clase "btn-primary"
+		const botones = document.querySelectorAll('.btn-primary');
+
+		// Agregar un evento click a cada uno de los botones
+		botones.forEach(boton => {
+		boton.addEventListener('click', event => {
+			// Obtener el ID del servicio desde el atributo "data-servicio-id" del botón
+			const idServicio = event.target.getAttribute('data-servicio-id');
+			console.log(idServicio);
+			// Obtener la tarjeta que contiene al botón
+			const tarjeta = event.target.closest('.card');
+
+			// Obtener los elementos de la tarjeta que necesitas para el formulario del modal
+			/*const servicioId = tarjeta.querySelector('.servicio-id').textContent;*/
+			const servicioNombre = tarjeta.querySelector('#servicio-nombre').value;
+			const proveedorNombre = tarjeta.querySelector('#proveedor-nombre').textContent
+			const proveedorMovil = tarjeta.querySelector('#proveedor-movil').value;
+
+			// Establecer los valores obtenidos en el formulario del modal
+			document.querySelector('#servicioId').value = idServicio;
+			document.querySelector('#inputServicioNombre').value = servicioNombre;
+			document.querySelector('#inputProveedorNombre').value = proveedorNombre;
+			document.querySelector('#inputProveedorMovil').value = proveedorMovil;
+		});
+	});
+	</script>
 
 </body>
 </html>
